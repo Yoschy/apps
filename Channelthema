@@ -1,0 +1,36 @@
+
+var Bot = KnuddelsServer.getDefaultBotUser();
+var App = (new function()
+  {  
+  KnuddelsServer.getUserByNickname = function(nick) {
+	try {
+var userid = KnuddelsServer.getUserId(nick);
+var user = KnuddelsServer.getUser(userid);
+	return user;
+	} catch (e) {
+	return null;
+}
+	  }
+ this.chatCommands = {
+
+ channelthema: function (user, params, command) {
+  var channel = KnuddelsServer.getChannel();
+	var channelConfiguration = channel.getChannelConfiguration();
+	var channelInformation = channelConfiguration.getChannelInformation();
+ channelInformation.setTopic(params);
+ }   
+ };
+
+ this.onPublicMessage = function(publicMessage) {
+    if (publicMessage.getText().contains('Schneeball'))
+    {
+        Bot.sendPublicMessage(publicMessage.getAuthor() + '°30°wirft °r° und °R°TRIFFT!°>{sprite}type:snowball|nick:James<°');
+    }
+	var channel = KnuddelsServer.getChannel();
+	var channelConfiguration = channel.getChannelConfiguration();
+	var channelInformation = channelConfiguration.getChannelInformation();
+
+channelInformation.setTopic('°>{font}FinelinerScript<33O°M°W°usiic°O°Z°W°one °O°FM °W°Dein °O°R°W°adio im Netz°#°Geht ins Ohr und bleibt dort bestehen°#°Webseite: °>Klick hier|http://www.musiiczone-fm.de<°');
+
+};
+}());
